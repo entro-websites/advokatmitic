@@ -96,8 +96,21 @@
   .dark .h2 em{ color: var(--gold); }
   .lede{ font-size: 20px; line-height: 1.6; color: var(--text-muted); max-width: 60ch; margin-top: 24px; font-weight: 300; }
   .dark .lede{ color: var(--on-dark-muted); }
-  .sec-head{ display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; }
-  .sec-head .lede{ margin-top: 0; }
+  /* naslov sekcije: tag, naslov u tacno dva reda, tekst ispod */
+  .h2{ container-type: inline-size; }
+  .h2 > span, .h2 > em{ display: block; white-space: nowrap; font-size: min(1em, calc(var(--fit, 9) * 1cqi)); }
+  #situacije .h2{ --fit: 9.2; }
+  #oblasti .h2{ --fit: 12.4; }
+  #nezgoda .h2{ --fit: 9.3; }
+  #advokat .h2{ --fit: 9; }
+  .principles .h2{ --fit: 10.8; }
+  #proces .h2{ --fit: 13.9; }
+  #tekstovi .h2{ --fit: 13; }
+  #pitanja .h2{ --fit: 13.4; }
+  #kontakt .h2{ --fit: 8.4; }
+  .sec-head{ text-align: center; margin-bottom: 64px; }
+  .sec-head .lede{ margin-left: auto; margin-right: auto; text-wrap: balance; }
+  .sec-head .eyebrow::after, .press-head .eyebrow::after{ content: ""; width: 32px; height: 1px; background: currentColor; }
 
   /* ---------- dugmad: tri nivoa, oštri uglovi ---------- */
   .btn{
@@ -358,8 +371,10 @@
 
   /* ---------- autorski tekstovi ---------- */
   .press{ background: var(--white); overflow: hidden; }
-  .press-head{ display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 56px; }
-  .press-head .lede{ margin-top: 24px; }
+  .press-head{ display: grid; grid-template-columns: 1fr minmax(0, 800px) 1fr; align-items: end; gap: 32px; margin-bottom: 56px; text-align: center; }
+  .press-head > div:first-child{ grid-column: 2; }
+  .press-head .lede{ margin: 24px auto 0; text-wrap: balance; }
+  .press-nav{ grid-column: 3; justify-self: end; }
   .press-nav{ display: flex; gap: 8px; }
   .press-nav button{ width: 56px; height: 56px; border: 1px solid var(--line); background: transparent; cursor: pointer; display: grid; place-items: center; transition: background .25s, border-color .25s; }
   .press-nav button:hover{ background: var(--ink); border-color: var(--ink); }
@@ -495,7 +510,7 @@
     .facts li:nth-child(3){ border-left: 0; padding-left: 0; }
     .facts li:nth-child(n+3){ border-top: 1px solid var(--line-dark); }
 
-    .sec-head{ grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
+    .sec-head{ margin-bottom: 48px; }
     .cases{ grid-template-columns: repeat(2, 1fr); }
     .areas-grid, .guide-grid, .faq-grid, .contact-grid, .about-grid{ grid-template-columns: 1fr; gap: 56px; }
     .areas-side, .guide-side, .faq-side{ position: static; }
@@ -549,7 +564,9 @@
     .pr-grid{ grid-template-columns: 1fr; }
     .pr{ padding-top: 36px; padding-bottom: 36px; padding-left: 24px; padding-right: 24px; }
     .process-list{ grid-template-columns: 1fr; row-gap: 40px; }
-    .press-head{ flex-direction: column; align-items: start; }
+    .press-head{ grid-template-columns: 1fr; }
+    .press-head > div:first-child, .press-nav{ grid-column: auto; }
+    .press-nav{ justify-self: center; }
     .press-track{ padding-left: 20px; padding-right: 20px; scroll-padding-left: 20px; gap: 20px; }
     .article{ flex-basis: 212px; }
     .faq summary{ font-size: 20px; padding-top: 24px; padding-bottom: 24px; }
@@ -706,7 +723,7 @@
     <div class="sec-head reveal">
       <div>
         <span class="eyebrow">Zašto ljudi zovu</span>
-        <h2 class="h2">Prepoznaješ li se <em>u nekoj od ovih rečenica?</em></h2>
+        <h2 class="h2"><span>Prepoznaješ li se</span> <em>u nekoj od ovih rečenica?</em></h2>
       </div>
       <p class="lede">Pravni problem retko stigne najavljen. Obično počne jednim telefonskim pozivom, pismom iz suda ili udarcem u branik. Ovo su situacije sa kojima nam ljudi najčešće dolaze.</p>
     </div>
@@ -750,7 +767,7 @@
   <div class="wrap areas-grid">
     <aside class="areas-side reveal">
       <span class="eyebrow">Pravne usluge</span>
-      <h2 class="h2">Sedam oblasti. <em>Jedna kancelarija.</em></h2>
+      <h2 class="h2"><span>Sedam oblasti.</span> <em>Jedna kancelarija.</em></h2>
       <p class="lede">Zastupamo građane i firme pred sudovima, osiguranjima i Katastrom. Kad može, spor rešavamo dogovorom. Kad ne može, idemo na sud.</p>
       <nav class="areas-index" aria-label="Oblasti prava">
         <a href="#oblast-1"><span>01</span>Naknada štete</a>
@@ -857,7 +874,7 @@
   <div class="wrap guide-grid">
     <div class="guide-side reveal">
       <span class="eyebrow">Posle saobraćajne nezgode</span>
-      <h2 class="h2">Pet koraka koji odlučuju <em>koliko ćeš dobiti.</em></h2>
+      <h2 class="h2"><span>Pet koraka koji odlučuju</span> <em>koliko ćeš dobiti.</em></h2>
       <p class="lede">Najveći deo naknade se izgubi u prvih nekoliko dana, zbog dokaza kojih nema ili vozila koje je popravljeno prerano. Ovo su pravila iz našeg teksta o naknadi štete.</p>
       <div class="guide-src">
         <img src="assets/unnamed-file_(1)_(1)_(1).jpg" alt="Naslovna strana teksta Naknada štete proistekle iz saobraćajne nezgode" width="64" height="92">
@@ -925,7 +942,7 @@
 
     <div class="about-copy reveal">
       <span class="eyebrow">O advokatu</span>
-      <h2 class="h2">Nikola Mitić, <em>advokat sa Banovog brda.</em></h2>
+      <h2 class="h2"><span>Nikola Mitić,</span> <em>advokat sa Banovog brda.</em></h2>
       <p>Advokatska kancelarija Mitić radi sa građanima i firmama iz Beograda. Kancelarija je na Banovom brdu, u Beogradskog bataljona 11a, i otvorena je svakog radnog dana od 9 do 19 časova.</p>
       <p>Advokat Nikola Mitić piše i autorske tekstove za rubriku „Vaše pravo" u časopisu Pronađite na Čukarici. U njima objašnjava razvod, nasleđivanje, svojinu i naknadu štete jezikom koji razume svako, i isto tako razgovara sa klijentima.</p>
 
@@ -948,7 +965,7 @@
     <div class="sec-head reveal">
       <div>
         <span class="eyebrow">Kako radimo</span>
-        <h2 class="h2">Četiri reči <em>koje stoje na vratima.</em></h2>
+        <h2 class="h2"><span>Četiri reči</span> <em>koje stoje na vratima.</em></h2>
       </div>
       <p class="lede">Profesionalno, odgovorno, brzo, efikasno. To je obećanje kancelarije od prvog dana, i evo šta ono znači u praksi.</p>
     </div>
@@ -983,7 +1000,7 @@
     <div class="sec-head reveal">
       <div>
         <span class="eyebrow">Od poziva do rešenja</span>
-        <h2 class="h2">Šta se dešava <em>kad nas pozoveš.</em></h2>
+        <h2 class="h2"><span>Šta se dešava</span> <em>kad nas pozoveš.</em></h2>
       </div>
       <p class="lede">Bez papirologije unapred i bez obaveze. Prvi razgovor služi da oboje shvatimo gde stojiš.</p>
     </div>
@@ -1017,7 +1034,7 @@
   <div class="wrap press-head reveal">
     <div>
       <span class="eyebrow">Rubrika „Vaše pravo"</span>
-      <h2 class="h2">Deset tekstova <em>o tvojim pravima.</em></h2>
+      <h2 class="h2"><span>Deset tekstova</span> <em>o tvojim pravima.</em></h2>
       <p class="lede">Advokat Nikola Mitić piše za časopis Pronađite na Čukarici. Pročitaj pre nego što dođeš, pa ćemo na konsultaciji brže do suštine.</p>
     </div>
     <div class="press-nav">
@@ -1090,7 +1107,7 @@
   <div class="wrap faq-grid">
     <div class="faq-side reveal">
       <span class="eyebrow">Česta pitanja</span>
-      <h2 class="h2">Kratki odgovori <em>pre prvog poziva.</em></h2>
+      <h2 class="h2"><span>Kratki odgovori</span> <em>pre prvog poziva.</em></h2>
       <p class="lede">Za tvoj konkretan slučaj odgovor dobijaš na konsultaciji. Ovo su pitanja koja čujemo najčešće.</p>
       <a href="tel:+381641150247" class="btn btn-primary"><svg><use href="#i-phone"/></svg> Pitaj advokata direktno</a>
     </div>
@@ -1130,7 +1147,7 @@
   <div class="wrap contact-grid">
     <div class="reveal">
       <span class="eyebrow">Zakaži konsultaciju</span>
-      <h2 class="h2">Prvi razgovor je besplatan. <em>Pozovi danas.</em></h2>
+      <h2 class="h2"><span>Prvi razgovor je besplatan.</span> <em>Pozovi danas.</em></h2>
       <p class="lede">Opiši situaciju telefonom ili preko forme. Dogovorićemo termin u kancelariji na Banovom brdu.</p>
       <a href="tel:+381641150247" class="contact-big">064 1150 247</a>
 
